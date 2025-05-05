@@ -16,7 +16,8 @@
           {
             "group": "Endpoints",
             "openapi": {
-              "source": "openapi.yaml"
+              "source": "openapi.yaml",
+              "directory": "funding-service"
             }
           }
         ]
