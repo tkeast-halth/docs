@@ -12,7 +12,7 @@
     "tabs": [
       {
           "tab": "API Reference",
-          "openapi": "/openapi.yml"
+          "openapi": "openapi.yml"
       }
     ]
   }
