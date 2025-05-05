@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: HaltH API
+  version: 1.0.0
+servers:
+  - url: https://api.halth.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    HealthFundCardCreateParams:
+      type: object
+      properties:
+        memberNumber:
+          type: string
+          minLength: 1
+          maxLength: 16
+        issueNumber:
+          type: string
+          minLength: 1
+          maxLength: 3
+        healthFundId:
+          type: string
+          enum: &a1
+            - AHM
+            - ACA
+            - AUNITY
+            - BUPA
+            - CBHS
+            - NAVY
+            - PEOPLE
+            - TEACH
+            - UNI
+            - GMHBA
+            - FRANK
+            - BUDGET
+            - NIB
+            - AAMI
+            - APIA
+            - QANTAS
+            - SUN
+            - HIWA
+            - DEFH
+            - ONEMED
+            - SEEU
+            - WEST
+            - LATRO
+            - HBF
+            - RT
+            - TUH
+            - UNION
+            - POLICE
+            - PHNX
+            - CBHSC
+            - ADF
+            - HPART
+            - STLUK
+            - ASTUTE
+            - RBHS
+            - DOC
+            - HCI
+            - TEST
+            - HCF
+            - MEDIB
+            - QCH
+            - TERR
+        cardholders:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                minLength: 1
+                maxLength: 255
+              referenceNumber:
+                type: string
+                minLength: 1
+                maxLength: 2
+            required:
+              - name
+              - referenceNumber
+        defaultReferenceNumber:
+          type: string
+          minLength: 1
+          maxLength: 3
+        issueDate:
+          type: string
+          format: date
+      required:
+        - memberNumber
+        - healthFundId
+  parameters: {}
+paths:
+  /funding/au/health-fund-cards:
+    post:
+      summary: Create a new health fund card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HealthFundCardCreateParams"
+            example:
+              healthFundId: AHM
+              memberNumber: "123456789"
+              referenceNumber: "01"
+              issueNumber: "1"
+      responses:
+        "201":
+          description: Health fund card created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  memberNumberLast4:
+                    type: string
+                  healthFundId:
+                    type: string
+                    enum: *a1
+                  healthFund:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        enum: *a1
+                      displayName:
+                        type: string
+                    required:
+                      - id
+                      - displayName
+                  cardholders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                        referenceNumber:
+                          type: string
+                          minLength: 1
+                          maxLength: 2
+                      required:
+                        - name
+                        - referenceNumber
+                  fingerprint:
+                    type: string
+                  defaultReferenceNumber:
+                    type: string
+                required:
+                  - id
+                  - memberNumberLast4
+                  - healthFundId
+                  - healthFund
+                  - cardholders
+                  - fingerprint
+              example:
+                id: hfcd_2wg8XkT3hmR7ll3zn4JqWt1HHTV
+                memberNumberLast4: "4321"
+                healthFundId: MEDIB
+                healthFund:
+                  id: MEDIB
+                  displayName: Medicare
+                cardholders: []
+                fingerprint: badb30513613e35870fef3b8a1ca3b368b11ad097d9997350a71dfb9f2396b05
+                defaultReferenceNumber: "01"
+  /funding/au/health-funds:
+    get:
+      summary: Get all health funds
+      responses:
+        "200":
+          description: Health funds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  memberNumberLast4:
+                    type: string
+                  healthFundId:
+                    type: string
+                    enum: *a1
+                  healthFund:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        enum: *a1
+                      displayName:
+                        type: string
+                    required:
+                      - id
+                      - displayName
+                  cardholders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                        referenceNumber:
+                          type: string
+                          minLength: 1
+                          maxLength: 2
+                      required:
+                        - name
+                        - referenceNumber
+                  fingerprint:
+                    type: string
+                  defaultReferenceNumber:
+                    type: string
+                required:
+                  - id
+                  - memberNumberLast4
+                  - healthFundId
+                  - healthFund
+                  - cardholders
+                  - fingerprint
+              example:
+                id: MEDIB
+                displayName: Medibank
