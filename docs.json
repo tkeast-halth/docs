@@ -9,19 +9,19 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-  "tabs": [
-    {
-      "tab": "API Reference",
-      "groups": [
-        {
-          "group": "Endpoints",
-          "openapi": {
-            "source": "/path/to/openapi-1.json",
-            "directory": "api-reference"
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "openapi": {
+              "source": "/path/to/openapi-1.json",
+              "directory": "api-reference"
+            }
           }
-        }
-      ]
-    }
-  ]
-}
+        ]
+      }
+    ]
+  }
 }
