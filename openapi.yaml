@@ -5,11 +5,6 @@ info:
 servers:
   - url: https://api.halth.com
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
     HealthFundCardCreateParams:
       type: object
@@ -98,7 +93,7 @@ paths:
   /funding/au/health-fund-cards:
     post:
       tags:
-        - health-fund-cards
+        - Health Fund Cards
       summary: Create a new health fund card
       requestBody:
         content:
@@ -176,7 +171,8 @@ paths:
   /funding/au/health-funds:
     get:
       tags:
-        - health-funds
+        - Health Funds
+      description: Get all available Health Funds
       summary: Get all health funds
       responses:
         "200":
