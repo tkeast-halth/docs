@@ -16,8 +16,7 @@
           {
             "group": "Endpoints",
             "openapi": {
-              "source": "/path/to/openapi-1.json",
-              "directory": "api-reference"
+              "source": "openapi.yaml"
             }
           }
         ]
