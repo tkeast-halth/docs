@@ -184,49 +184,12 @@ paths:
                 properties:
                   id:
                     type: string
-                  memberNumberLast4:
-                    type: string
-                  healthFundId:
-                    type: string
                     enum: *a1
-                  healthFund:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        enum: *a1
-                      displayName:
-                        type: string
-                    required:
-                      - id
-                      - displayName
-                  cardholders:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          minLength: 1
-                          maxLength: 255
-                        referenceNumber:
-                          type: string
-                          minLength: 1
-                          maxLength: 2
-                      required:
-                        - name
-                        - referenceNumber
-                  fingerprint:
-                    type: string
-                  defaultReferenceNumber:
+                  displayName:
                     type: string
                 required:
                   - id
-                  - memberNumberLast4
-                  - healthFundId
-                  - healthFund
-                  - cardholders
-                  - fingerprint
+                  - displayName
               example:
                 id: MEDIB
                 displayName: Medibank
