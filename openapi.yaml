@@ -94,7 +94,7 @@ paths:
     post:
       tags:
         - Health Fund Cards
-      summary: Create a new health fund card
+      description: Create a new health fund card
       requestBody:
         content:
           application/json:
@@ -173,7 +173,6 @@ paths:
       tags:
         - Health Funds
       description: Get all available Health Funds
-      summary: Get all health funds
       responses:
         "200":
           description: Health funds
