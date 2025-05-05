@@ -97,6 +97,8 @@ components:
 paths:
   /funding/au/health-fund-cards:
     post:
+      tags:
+        - health-fund-cards
       summary: Create a new health fund card
       requestBody:
         content:
@@ -173,6 +175,8 @@ paths:
                 defaultReferenceNumber: "01"
   /funding/au/health-funds:
     get:
+      tags:
+        - health-funds
       summary: Get all health funds
       responses:
         "200":
