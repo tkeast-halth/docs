@@ -3,7 +3,7 @@ info:
   title: HaltH API
   version: 1.0.0
 servers:
-  - url: https://api.halth.com
+  - url: https://api.dev.halth.com
 components:
   schemas:
     HealthFundCardCreateParams:
