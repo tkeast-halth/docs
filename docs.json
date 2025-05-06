@@ -4,23 +4,15 @@
   "name": "HaltH API",
   "colors": {
     "primary": "#345251",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#345251",
+    "dark": "#345251"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Endpoints",
-            "openapi": {
-              "source": "openapi.yaml",
-              "directory": "funding-service"
-            }
-          }
-        ]
+          "tab": "Funding Service",
+          "openapi": "/funding-service/openapi.yaml"
       }
     ]
   }
