@@ -1,93 +1,11 @@
 openapi: 3.0.0
 info:
-  title: HaltH API
+  title: funding-service
   version: 1.0.0
 servers:
   - url: https://api.dev.halth.com
 components:
-  schemas:
-    HealthFundCardCreateParams:
-      type: object
-      properties:
-        memberNumber:
-          type: string
-          minLength: 1
-          maxLength: 16
-        issueNumber:
-          type: string
-          minLength: 1
-          maxLength: 3
-        healthFundId:
-          type: string
-          enum: &a1
-            - AHM
-            - ACA
-            - AUNITY
-            - BUPA
-            - CBHS
-            - NAVY
-            - PEOPLE
-            - TEACH
-            - UNI
-            - GMHBA
-            - FRANK
-            - BUDGET
-            - NIB
-            - AAMI
-            - APIA
-            - QANTAS
-            - SUN
-            - HIWA
-            - DEFH
-            - ONEMED
-            - SEEU
-            - WEST
-            - LATRO
-            - HBF
-            - RT
-            - TUH
-            - UNION
-            - POLICE
-            - PHNX
-            - CBHSC
-            - ADF
-            - HPART
-            - STLUK
-            - ASTUTE
-            - RBHS
-            - DOC
-            - HCI
-            - TEST
-            - HCF
-            - MEDIB
-            - QCH
-            - TERR
-        cardholders:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                minLength: 1
-                maxLength: 255
-              referenceNumber:
-                type: string
-                minLength: 1
-                maxLength: 2
-            required:
-              - name
-              - referenceNumber
-        defaultReferenceNumber:
-          type: string
-          minLength: 1
-          maxLength: 3
-        issueDate:
-          type: string
-          format: date
-      required:
-        - memberNumber
-        - healthFundId
+  schemas: {}
   parameters: {}
 paths:
   /funding/au/health-fund-cards:
@@ -100,7 +18,87 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/HealthFundCardCreateParams"
+              type: object
+              properties:
+                memberNumber:
+                  type: string
+                  minLength: 1
+                  maxLength: 16
+                issueNumber:
+                  type: string
+                  minLength: 1
+                  maxLength: 3
+                healthFundId:
+                  type: string
+                  enum: &a1
+                    - AHM
+                    - ACA
+                    - AUNITY
+                    - BUPA
+                    - CBHS
+                    - NAVY
+                    - PEOPLE
+                    - TEACH
+                    - UNI
+                    - GMHBA
+                    - FRANK
+                    - BUDGET
+                    - NIB
+                    - AAMI
+                    - APIA
+                    - QANTAS
+                    - SUN
+                    - HIWA
+                    - DEFH
+                    - ONEMED
+                    - SEEU
+                    - WEST
+                    - LATRO
+                    - HBF
+                    - RT
+                    - TUH
+                    - UNION
+                    - POLICE
+                    - PHNX
+                    - CBHSC
+                    - ADF
+                    - HPART
+                    - STLUK
+                    - ASTUTE
+                    - RBHS
+                    - DOC
+                    - HCI
+                    - TEST
+                    - HCF
+                    - MEDIB
+                    - QCH
+                    - TERR
+                cardholders:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                        maxLength: 255
+                      referenceNumber:
+                        type: string
+                        minLength: 1
+                        maxLength: 2
+                    required:
+                      - name
+                      - referenceNumber
+                defaultReferenceNumber:
+                  type: string
+                  minLength: 1
+                  maxLength: 3
+                issueDate:
+                  type: string
+                  format: date
+              required:
+                - memberNumber
+                - healthFundId
             example:
               healthFundId: AHM
               memberNumber: "123456789"
@@ -162,10 +160,10 @@ paths:
               example:
                 id: hfcd_2wg8XkT3hmR7ll3zn4JqWt1HHTV
                 memberNumberLast4: "4321"
-                healthFundId: MEDIB
+                healthFundId: BUPA
                 healthFund:
-                  id: MEDIB
-                  displayName: Medicare
+                  id: BUPA
+                  displayName: Bupa
                 cardholders: []
                 fingerprint: badb30513613e35870fef3b8a1ca3b368b11ad097d9997350a71dfb9f2396b05
                 defaultReferenceNumber: "01"
@@ -192,5 +190,98 @@ paths:
                   - id
                   - displayName
               example:
-                id: MEDIB
-                displayName: Medibank
+                id: BUPA
+                displayName: Bupa
+  /funding/au/quotes:
+    get:
+      tags:
+        - Funding
+      summary: Get funding quote
+      description: Get a funding quote
+      requestBody:
+        required: true
+        description: Funding quote request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceProvider:
+                  type: object
+                  properties:
+                    locationId:
+                      type: string
+                    providerId:
+                      type: string
+                  required:
+                    - locationId
+                    - providerId
+                transactionItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      chargeAmount:
+                        anyOf:
+                          - type: number
+                            enum:
+                              - 0
+                          - type: integer
+                            minimum: 0
+                            maximum: 9999999
+                            description: Charge amount in cents
+                            example: 10005
+                      itemCode:
+                        type: string
+                      description:
+                        type: string
+                      clinicalCode:
+                        type: string
+                      isICDCode:
+                        type: boolean
+                    required:
+                      - chargeAmount
+                      - description
+                phi:
+                  type: object
+                  properties:
+                    healthFundCardId:
+                      type: string
+                    patient:
+                      type: object
+                      properties:
+                        referenceNumber:
+                          type: string
+                        location:
+                          type: object
+                          properties:
+                            longitude:
+                              type: number
+                            latitude:
+                              type: number
+                            altitude:
+                              type: number
+                            accuracy:
+                              type: number
+                          required:
+                            - longitude
+                            - latitude
+                  required:
+                    - healthFundCardId
+              required:
+                - serviceProvider
+                - transactionItems
+            example:
+              serviceProvider:
+                locationId: loc_2wg8XkT3hmR7ll3zn4JqWt1HHTV
+                providerId: prov_2wg8XkT3hmR7ll3zn4JqWt1HHTV
+              healthFundCardId: hfcd_2wg8XkT3hmR7ll3zn4JqWt1HHTV
+              transactionItems:
+                - itemCode: "1002"
+                  description: Chiropractic adjustment
+                  chargeAmount: 9300
+      responses:
+        "200":
+          description: Funding quote response

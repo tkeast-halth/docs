@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: business-service
+  version: 1.0.0
+servers:
+  - url: https://api.dev.halth.com
+components:
+  schemas: {}
+  parameters: {}
+paths:
+  /organisations/{organisationId}/summary:
+    get:
+      tags:
+        - Booking data
+      description: Get booking data
+      summary: Get booking data for an organisation
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: organisationId
+          in: path
+        - schema:
+            anyOf:
+              - type: array
+                items:
+                  type: string
+                  enum: &a1
+                    - locations
+                    - providers
+                    - services
+                    - booking_settings
+                    - businesses
+              - type: string
+                enum: *a1
+          required: false
+          name: expand
+          in: query
+      responses:
+        "200":
+          description: Booking data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  slug:
+                    type: string
+                  name:
+                    type: string
+                  country:
+                    type: string
+                  bookingsEnabled:
+                    type: boolean
+                  brandImageUrl:
+                    type: string
+                    nullable: true
+                  businesses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        fundingConnectEnabled:
+                          type: boolean
+                        paymentsEnabled:
+                          type: boolean
+                      required:
+                        - id
+                        - fundingConnectEnabled
+                        - paymentsEnabled
+                required:
+                  - id
+                  - slug
+                  - name
+                  - country
+                  - bookingsEnabled
+              example:
+                id: org_2wfKIR2pH7Nw2ERyESpkBOPb0RC
+                slug: test-organisation
+                name: Test Organisation
+                country: AU
+                bookingsEnabled: true

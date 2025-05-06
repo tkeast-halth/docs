@@ -1,22 +1,22 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "HaltH API",
+  "name": "HaltH",
   "colors": {
     "primary": "#345251",
     "light": "#345251",
     "dark": "#345251"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
-          "tab": "Booking",
-          "openapi": "/organisation-service/openapi.yaml"
+        "tab": "Funding",
+        "openapi": "/funding-service/openapi.yaml"
       },
       {
-          "tab": "Funding",
-          "openapi": "/funding-service/openapi.yaml"
+        "tab": "Booking",
+        "openapi": "/business-service/openapi.yaml"
       }
     ]
   }
