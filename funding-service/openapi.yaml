@@ -12,8 +12,10 @@ paths:
     post:
       tags:
         - Health Fund Cards
-      description: Create a new health fund card
       summary: Create health fund card
+      description:
+        Construct a digital copy of a health fund card. The requirements
+        for each health fund will vary.
       requestBody:
         content:
           application/json:
@@ -171,7 +173,7 @@ paths:
     get:
       tags:
         - Health Funds
-      description: Get all available Health Funds
+      description: List all available health funds
       summary: Get health funds
       responses:
         "200":
@@ -197,7 +199,7 @@ paths:
       tags:
         - Funding
       summary: Get funding quote
-      description: Get a funding quote
+      description: Check for funding eligibility with a given provider and service
       requestBody:
         required: true
         description: Funding quote request
@@ -223,6 +225,8 @@ paths:
                     properties:
                       id:
                         type: string
+                        description: Unique identifier for the transaction item
+                        example: "1"
                       chargeAmount:
                         anyOf:
                           - type: number

@@ -12,8 +12,10 @@ paths:
     get:
       tags:
         - Booking data
-      description: Get booking data
-      summary: Get booking data for an organisation
+      summary: Get booking data
+      description:
+        Get booking data for an organisation. Option to expand related data
+        required to make booking.
       parameters:
         - schema:
             type: string
@@ -64,13 +66,13 @@ paths:
                       properties:
                         id:
                           type: string
-                        fundingConnectEnabled:
+                        healthConnectEnabled:
                           type: boolean
                         paymentsEnabled:
                           type: boolean
                       required:
                         - id
-                        - fundingConnectEnabled
+                        - healthConnectEnabled
                         - paymentsEnabled
                 required:
                   - id
@@ -84,3 +86,139 @@ paths:
                 name: Test Organisation
                 country: AU
                 bookingsEnabled: true
+  /organisations/{organisationId}/bookings:
+    post:
+      tags:
+        - Bookings
+      summary: Create booking
+      description:
+        Create a booking with a provider. This will be synced with the
+        provider's patient management system.
+      requestBody:
+        required: true
+        description: Booking create request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locationId:
+                  type: string
+                providerId:
+                  type: string
+                appointmentTypeId:
+                  type: string
+                appointmentTime:
+                  type: string
+                notes:
+                  type: string
+                createMemberAccount:
+                  type: boolean
+                client:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+                    mobileNumber:
+                      type: string
+                      pattern: ^\+[1-9]\d{1,14}$
+                    email:
+                      type: string
+                      format: email
+                    dateOfBirth:
+                      type: string
+                  required:
+                    - firstName
+                    - lastName
+                    - mobileNumber
+                    - email
+                    - dateOfBirth
+                payment:
+                  type: object
+                  properties:
+                    confirmationTokenId:
+                      type: string
+                    customerId:
+                      type: string
+                    paymentMethodId:
+                      type: string
+                funding:
+                  type: object
+                  properties:
+                    healthFundCardId:
+                      type: string
+                  required:
+                    - healthFundCardId
+              required:
+                - locationId
+                - providerId
+                - appointmentTypeId
+                - appointmentTime
+                - client
+      responses:
+        "201":
+          description: Booking created
+  /organisations/{organisationId}/bookings/availability:
+    get:
+      tags:
+        - Availability
+      summary: Get availability
+      description: Get availability for a provider.
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: locationId
+          in: query
+        - schema:
+            type: string
+          required: false
+          name: providerId
+          in: query
+        - schema:
+            type: string
+          required: true
+          name: appointmentTypeId
+          in: query
+        - schema:
+            type: string
+          required: true
+          name: fromDate
+          in: query
+        - schema:
+            type: string
+          required: true
+          name: toDate
+          in: query
+      responses:
+        "200":
+          description: Available times
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  times:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        appointmentTime:
+                          type: string
+                        providers:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                        - appointmentTime
+                        - providers
+                required:
+                  - times
+              example:
+                times:
+                  - appointmentTime: 2021-01-01T00:00:00.000Z
+                    providers:
+                      - prov_2wg8XkT3hmR7ll3zn4JqWt1HHTV
+                      - prov_2wg8XkT3hmR7ll3zn4JqWt1HHTV
