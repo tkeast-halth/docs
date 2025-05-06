@@ -11,12 +11,26 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Funding",
-        "openapi": "/funding-service/openapi.yaml"
+        "tab": "Guides",
+        "pages": [
+          {
+            "group": "Funding",
+            "pages": ["funding-service/overview"]
+          }
+        ]
       },
       {
-        "tab": "Booking",
-        "openapi": "/business-service/openapi.yaml"
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Booking",
+            "openapi": "business-service/openapi.yaml"
+          },
+          {
+            "group": "Funding",
+            "openapi": "funding-service/openapi.yaml"
+          }
+        ]
       }
     ]
   }

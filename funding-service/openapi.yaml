@@ -8,6 +8,73 @@ components:
   schemas: {}
   parameters: {}
 paths:
+  /funding/au/health-funds:
+    get:
+      tags:
+        - Health Funds
+      description: List all available health funds
+      summary: Get health funds
+      responses:
+        "200":
+          description: Health funds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    enum: &a1
+                      - AHM
+                      - ACA
+                      - AUNITY
+                      - BUPA
+                      - CBHS
+                      - NAVY
+                      - PEOPLE
+                      - TEACH
+                      - UNI
+                      - GMHBA
+                      - FRANK
+                      - BUDGET
+                      - NIB
+                      - AAMI
+                      - APIA
+                      - QANTAS
+                      - SUN
+                      - HIWA
+                      - DEFH
+                      - ONEMED
+                      - SEEU
+                      - WEST
+                      - LATRO
+                      - HBF
+                      - RT
+                      - TUH
+                      - UNION
+                      - POLICE
+                      - PHNX
+                      - CBHSC
+                      - ADF
+                      - HPART
+                      - STLUK
+                      - ASTUTE
+                      - RBHS
+                      - DOC
+                      - HCI
+                      - TEST
+                      - HCF
+                      - MEDIB
+                      - QCH
+                      - TERR
+                  displayName:
+                    type: string
+                required:
+                  - id
+                  - displayName
+              example:
+                id: BUPA
+                displayName: Bupa
   /funding/au/health-fund-cards:
     post:
       tags:
@@ -32,49 +99,7 @@ paths:
                   maxLength: 3
                 healthFundId:
                   type: string
-                  enum: &a1
-                    - AHM
-                    - ACA
-                    - AUNITY
-                    - BUPA
-                    - CBHS
-                    - NAVY
-                    - PEOPLE
-                    - TEACH
-                    - UNI
-                    - GMHBA
-                    - FRANK
-                    - BUDGET
-                    - NIB
-                    - AAMI
-                    - APIA
-                    - QANTAS
-                    - SUN
-                    - HIWA
-                    - DEFH
-                    - ONEMED
-                    - SEEU
-                    - WEST
-                    - LATRO
-                    - HBF
-                    - RT
-                    - TUH
-                    - UNION
-                    - POLICE
-                    - PHNX
-                    - CBHSC
-                    - ADF
-                    - HPART
-                    - STLUK
-                    - ASTUTE
-                    - RBHS
-                    - DOC
-                    - HCI
-                    - TEST
-                    - HCF
-                    - MEDIB
-                    - QCH
-                    - TERR
+                  enum: *a1
                 cardholders:
                   type: array
                   items:
@@ -169,40 +194,15 @@ paths:
                 cardholders: []
                 fingerprint: badb30513613e35870fef3b8a1ca3b368b11ad097d9997350a71dfb9f2396b05
                 defaultReferenceNumber: "01"
-  /funding/au/health-funds:
-    get:
-      tags:
-        - Health Funds
-      description: List all available health funds
-      summary: Get health funds
-      responses:
-        "200":
-          description: Health funds
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    enum: *a1
-                  displayName:
-                    type: string
-                required:
-                  - id
-                  - displayName
-              example:
-                id: BUPA
-                displayName: Bupa
   /funding/au/quotes:
-    get:
+    post:
       tags:
-        - Funding
-      summary: Get funding quote
+        - Quotes
+      summary: Create funding quote
       description: Check for funding eligibility with a given provider and service
       requestBody:
         required: true
-        description: Funding quote request
+        description: Create a funding quote
         content:
           application/json:
             schema:
@@ -288,4 +288,4 @@ paths:
                   chargeAmount: 9300
       responses:
         "200":
-          description: Funding quote response
+          description: Funding quote
