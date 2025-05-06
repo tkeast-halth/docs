@@ -14,6 +14,10 @@
         "tab": "Guides",
         "pages": [
           {
+            "group": "Booking",
+            "pages": ["business-service/overview"]
+          },
+          {
             "group": "Funding",
             "pages": ["funding-service/overview"]
           }
