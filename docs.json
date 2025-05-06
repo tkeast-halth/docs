@@ -11,7 +11,11 @@
   "navigation": {
     "tabs": [
       {
-          "tab": "Funding Service",
+          "tab": "Booking",
+          "openapi": "/organisation-service/openapi.yaml"
+      },
+      {
+          "tab": "Funding",
           "openapi": "/funding-service/openapi.yaml"
       }
     ]
