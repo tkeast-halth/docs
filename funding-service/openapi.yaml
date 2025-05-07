@@ -14,6 +14,12 @@ paths:
         - Item codes
       summary: Get item codes
       description: List all available item codes
+      parameters:
+        - schema:
+            type: string
+          required: false
+          name: serviceTypeCode
+          in: query
       responses:
         "200":
           description: Item codes

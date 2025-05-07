@@ -36,7 +36,10 @@
         "pages": [
           {
             "group": "Booking",
-            "pages": ["business-service/overview"]
+            "pages": [
+              "business-service/overview",
+              "business-service/member-authentication"
+            ]
           },
           {
             "group": "Funding",
