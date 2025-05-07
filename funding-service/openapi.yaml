@@ -8,6 +8,15 @@ components:
   schemas: {}
   parameters: {}
 paths:
+  /funding/au/service-items:
+    get:
+      tags:
+        - Item codes
+      summary: Get item codes
+      description: List all available item codes
+      responses:
+        "200":
+          description: Item codes
   /funding/au/health-funds:
     get:
       tags:

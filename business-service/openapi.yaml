@@ -225,3 +225,37 @@ paths:
       responses:
         "201":
           description: Booking created
+  /members/{memberId}/bookings/{bookingId}/cancel:
+    post:
+      security:
+        - bearer: []
+      tags:
+        - Bookings
+      summary: Cancel booking
+      description: Cancel a booking.
+      responses:
+        "200":
+          description: Booking cancelled
+  /members/{memberId}/bookings/{bookingId}:
+    patch:
+      security:
+        - bearer: []
+      tags:
+        - Bookings
+      summary: Update booking
+      description: Update a booking.
+      requestBody:
+        required: true
+        description: Booking update request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serviceDate:
+                  type: string
+              required:
+                - serviceDate
+      responses:
+        "200":
+          description: Booking updated

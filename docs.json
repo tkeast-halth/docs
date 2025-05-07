@@ -24,6 +24,10 @@
           {
             "group": "Transactions",
             "openapi": "transaction-service/openapi.yaml"
+          },
+          {
+            "group": "Medicare",
+            "pages": ["medicare/overview"]
           }
         ]
       },
