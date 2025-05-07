@@ -1,0 +1,35 @@
+---
+title: "Embed"
+---
+
+The HaltH embed is web component that can be added to any website to provide on-page booking management.
+
+<Frame>
+  <img src="embed-example.png" />
+</Frame>
+
+## Install
+
+Copy the code snippet below into the `<body>` tag of every page you want the embed to appear.
+
+You could also place the embed code into the `<head>` tag or other common component to show the embed on all pages.
+
+```html
+<!-- HaltH settings -->
+<script>
+  window.halthSettings = {
+    organisationId: "<YOUR_ORGANISATION_ID>",
+  };
+</script>
+
+<!-- HaltH embed -->
+<script src="https://loader.embed.halth.com" async></script>
+```
+
+Remember to replace `YOUR_ORGANISATION_ID` with your actual organisation ID.
+
+## Changes
+
+<Update label="2025-05-07" description="v1.0.0">
+  HaltH embed released
+</Update>

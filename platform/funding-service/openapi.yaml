@@ -17,6 +17,42 @@ paths:
       parameters:
         - schema:
             type: string
+            enum:
+              - F
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+              - P
+              - M
+              - "1"
+              - E
+              - U
+              - C
+              - S
+              - B
+              - N
+              - H
+              - Z
+              - "0"
+              - "2"
+              - V
+              - T
+              - O
+              - A
+              - L
+              - R
+              - G
+              - Q
+              - X
+              - W
+              - I
+              - K
+              - Y
+              - D
           required: false
           name: serviceTypeCode
           in: query

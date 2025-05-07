@@ -15,19 +15,19 @@
         "groups": [
           {
             "group": "Bookings",
-            "openapi": "business-service/openapi.yaml"
+            "openapi": "platform/business-service/openapi.yaml"
           },
           {
             "group": "Funding",
-            "openapi": "funding-service/openapi.yaml"
+            "openapi": "platform/funding-service/openapi.yaml"
           },
           {
             "group": "Transactions",
-            "openapi": "transaction-service/openapi.yaml"
+            "openapi": "platform/transaction-service/openapi.yaml"
           },
           {
             "group": "Medicare",
-            "pages": ["medicare/overview"]
+            "pages": ["platform/medicare/overview"]
           }
         ]
       },
@@ -37,17 +37,26 @@
           {
             "group": "Booking",
             "pages": [
-              "business-service/overview",
-              "business-service/member-authentication"
+              "platform/business-service/overview",
+              "platform/business-service/member-authentication"
             ]
           },
           {
             "group": "Funding",
-            "pages": ["funding-service/overview"]
+            "pages": ["platform/funding-service/overview"]
           },
           {
             "group": "Transactions",
-            "pages": ["transaction-service/overview"]
+            "pages": ["platform/transaction-service/overview"]
+          }
+        ]
+      },
+      {
+        "tab": "Embed",
+        "pages": [
+          {
+            "group": "Overview",
+            "pages": ["embed/overview"]
           }
         ]
       }
