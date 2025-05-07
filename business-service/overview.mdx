@@ -16,6 +16,18 @@ Use the [Check Availability](/api-reference/availability/get-availability) endpo
 
 The [Create Booking](/api-reference/bookings/create-booking) endpoint confirms the appointment by creating a new booking and syncing it into the provider's patient management system.
 
+## PMS Integration
+
+HaltH sets up a bi-directional sync with the provider's patient management system.
+
+We current support the following patient managment systems:
+
+- Cliniko
+- Nookal
+
+Once the integration is configured, we will frequently sync locations, providers, appointment types, and bookings.
+HaltH will also write new clients and bookings into the PMS via API.
+
 ## Next Steps
 
 For complete API documentation, visit the [Bookings API Reference](/api-reference/booking-data/get-booking-data).

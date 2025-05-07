@@ -37,6 +37,10 @@
           {
             "group": "Funding",
             "pages": ["funding-service/overview"]
+          },
+          {
+            "group": "Transactions",
+            "pages": ["transaction-service/overview"]
           }
         ]
       }
