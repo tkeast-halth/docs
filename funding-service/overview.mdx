@@ -2,7 +2,10 @@
 title: "Creating a funding quote"
 ---
 
-The funding quote process enables healthcare providers to verify patient coverage and estimate out-of-pocket expenses before providing services. This process involves two key steps: creating a health fund card and submitting a quote request. Each step is essential for ensuring accurate coverage verification and cost estimation.
+The funding quote process enables two key functions:
+
+- Clients can estimate their out-of-pocket expenses before booking an appointment
+- Healthcare providers can confirm funding and calculate gap payments after a service has been completed.
 
 ## Create a Health Fund Card
 
@@ -17,30 +20,6 @@ The system will validate the provided information and create a secure digital re
 Once you have created the health fund card, you can proceed with submitting a quote request. This step involves providing detailed information about the services being claimed and the patient's context. The quote request will return coverage details and estimated out-of-pocket expenses.
 
 To submit a quote request, make a GET request to the [Funding Quotes endpoint](/api-reference/funding/get-funding-quote).
-
-### Quote Request Components
-
-A quote request requires three main components:
-
-1. **Service Provider Information**
-
-   - Location identifier
-   - Provider identifier
-   - These ensure the quote is specific to the correct healthcare provider and location
-
-2. **Transaction Items**
-
-   - Detailed list of services being claimed
-   - Each service should include:
-     - Item code
-     - Description
-     - Charge amount
-   - Multiple services can be included in a single quote request
-
-3. **Private Health Insurance Details**
-   - Health fund card identifier (from Step 1)
-   - Patient reference number
-   - Location information for coverage verification
 
 ## Health Fund Integration
 
