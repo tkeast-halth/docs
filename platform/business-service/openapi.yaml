@@ -210,10 +210,6 @@ paths:
                   properties:
                     confirmationTokenId:
                       type: string
-                    customerId:
-                      type: string
-                    paymentMethodId:
-                      type: string
                 funding:
                   type: object
                   properties:

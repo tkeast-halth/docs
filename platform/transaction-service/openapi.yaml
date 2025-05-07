@@ -118,9 +118,7 @@ paths:
       tags:
         - Transactions
       summary: Confirm transaction
-      description: Confirm a transaction. When a transaction has private health
-        insurance funding, the transaction must be confirmed by the patient
-        within 5 minutes or the transaction will be reversed.
+      description: Confirm a transaction and process the gap payment.
       requestBody:
         content:
           application/json:
