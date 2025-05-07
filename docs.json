@@ -4,8 +4,8 @@
   "name": "HaltH",
   "colors": {
     "primary": "#345251",
-    "light": "#345251",
-    "dark": "#345251"
+    "light": "#ffffff",
+    "dark": "#ffffff"
   },
   "favicon": "/favicon.ico",
   "navigation": {
