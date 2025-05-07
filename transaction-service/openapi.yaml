@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: transaction-service
+  version: 1.0.0
+servers:
+  - url: https://api.dev.halth.com
+components:
+  schemas: {}
+  parameters: {}
+paths:
+  /businesses/{businessId}/transactions:
+    post:
+      tags:
+        - Transactions
+      summary: Create transaction
+      description:
+        Transactions may involve payment, funding, or both. Funding will be
+        processed first and then the gap payment is calculated.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                  enum:
+                    - aud
+                bookingId:
+                  type: string
+                reason:
+                  type: string
+                  enum:
+                    - standard
+                    - late_cancellation
+                    - no_show
+                service:
+                  type: object
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique identifier for the transaction item
+                            example: "1"
+                          chargeAmount:
+                            anyOf:
+                              - type: number
+                                enum:
+                                  - 0
+                              - type: integer
+                                minimum: 0
+                                maximum: 9999999
+                                description: Charge amount in cents
+                                example: 10005
+                          itemCode:
+                            type: string
+                          description:
+                            type: string
+                          clinicalCode:
+                            type: string
+                          isICDCode:
+                            type: boolean
+                        required:
+                          - chargeAmount
+                          - description
+                      minItems: 1
+                  required:
+                    - items
+                funding:
+                  type: object
+                  properties:
+                    healthFundCardId:
+                      type: string
+                    patient:
+                      type: object
+                      properties:
+                        location:
+                          type: object
+                          properties:
+                            longitude:
+                              type: number
+                            latitude:
+                              type: number
+                            altitude:
+                              type: number
+                            accuracy:
+                              type: number
+                          required:
+                            - longitude
+                            - latitude
+                      required:
+                        - location
+                  required:
+                    - healthFundCardId
+                    - patient
+                payment:
+                  type: object
+                  properties:
+                    paymentMethodId:
+                      type: string
+                  required:
+                    - paymentMethodId
+              required:
+                - currency
+                - bookingId
+                - reason
+                - service
+                - payment
+      responses:
+        "201":
+          description: Transaction created
+  /businesses/{businessId}/transactions/{transactionId}/confirm:
+    post:
+      tags:
+        - Transactions
+      summary: Confirm transaction
+      description: Confirm a transaction. When a transaction has private health
+        insurance funding, the transaction must be confirmed by the patient
+        within 5 minutes or the transaction will be reversed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verification:
+                  type: object
+                  properties:
+                    verificationCode:
+                      type: string
+                      minLength: 4
+                      maxLength: 4
+                  required:
+                    - verificationCode
+              required:
+                - verification
+      responses:
+        "200":
+          description: Transaction confirmed

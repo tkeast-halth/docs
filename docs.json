@@ -14,12 +14,16 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Booking",
+            "group": "Bookings",
             "openapi": "business-service/openapi.yaml"
           },
           {
             "group": "Funding",
             "openapi": "funding-service/openapi.yaml"
+          },
+          {
+            "group": "Transactions",
+            "openapi": "transaction-service/openapi.yaml"
           }
         ]
       },
