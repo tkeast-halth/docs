@@ -5,6 +5,11 @@ info:
 servers:
   - url: https://api.dev.halth.com
 components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas: {}
   parameters: {}
 paths:
@@ -232,7 +237,9 @@ paths:
       tags:
         - Bookings
       summary: Cancel booking
-      description: Cancel a booking.
+      description:
+        Allows member to cancel their booking. Cancellation policy may
+        apply and varies by provider.
       responses:
         "200":
           description: Booking cancelled
@@ -243,7 +250,9 @@ paths:
       tags:
         - Bookings
       summary: Update booking
-      description: Update a booking.
+      description:
+        Allows member to change the date and time of their booking. Use the
+        booking availability endpoint to get the available times for a booking.
       requestBody:
         required: true
         description: Booking update request
