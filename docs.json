@@ -12,7 +12,7 @@
       "robots": "noindex"
     }
   },
-  "favicon": "/favicon.ico",
+  "favicon": "favicon.ico",
   "navigation": {
     "tabs": [
       {
