@@ -5,11 +5,18 @@ info:
 servers:
   - url: https://api.dev.halth.com
 components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas: {}
   parameters: {}
 paths:
   /businesses/{businessId}/transactions:
     post:
+      security:
+        - bearer: []
       tags:
         - Transactions
       summary: Create transaction
@@ -115,6 +122,8 @@ paths:
           description: Transaction created
   /businesses/{businessId}/transactions/{transactionId}/confirm:
     post:
+      security:
+        - bearer: []
       tags:
         - Transactions
       summary: Confirm transaction

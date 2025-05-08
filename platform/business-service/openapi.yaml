@@ -20,7 +20,7 @@ paths:
       summary: Get booking data
       description:
         Get booking data for an organisation. Option to expand related data
-        required to make booking.
+        required to make a booking.
       parameters:
         - schema:
             type: string
@@ -98,8 +98,8 @@ paths:
       summary: Get availability
       description:
         Get availability for a location and appointment type. If providerId
-        is not provided, then all providers for the location/appointment type
-        will be queried for availability.
+        is omitted, then all providers for the location/appointment type will be
+        queried for availability.
       parameters:
         - schema:
             type: string
@@ -182,8 +182,6 @@ paths:
                   type: string
                 notes:
                   type: string
-                createMemberAccount:
-                  type: boolean
                 client:
                   type: object
                   properties:
@@ -210,6 +208,8 @@ paths:
                   properties:
                     confirmationTokenId:
                       type: string
+                  required:
+                    - confirmationTokenId
                 funding:
                   type: object
                   properties:
@@ -234,7 +234,7 @@ paths:
         - Bookings
       summary: Cancel booking
       description:
-        Allows member to cancel their booking. Cancellation policy may
+        Allows a member to cancel their booking. Cancellation policy may
         apply and varies by provider.
       responses:
         "200":
@@ -247,8 +247,9 @@ paths:
         - Bookings
       summary: Update booking
       description:
-        Allows member to change the date and time of their booking. Use the
-        booking availability endpoint to get the available times for a booking.
+        Allows a member to change the date and time of their booking. Use
+        the booking availability endpoint to get the available times for a
+        booking.
       requestBody:
         required: true
         description: Booking update request
